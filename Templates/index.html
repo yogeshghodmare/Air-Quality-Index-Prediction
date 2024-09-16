@@ -31,6 +31,16 @@
             margin-bottom: 10px;
             font-weight: bold;
         }
+        select[type="string"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            font-size: 16px;
+        }
         input[type="number"] {
             width: 100%;
             padding: 12px 20px;
@@ -61,11 +71,32 @@
             font-size: 14px;
             color: #999;
         }
+        .warning{
+            color: red;
+            font-size: x-large;
+            font-weight: bold;
+        }
+        .heading{
+            color: black;
+            font-size: 40px;
+            font-weight: 900;
+        }
     </style>
 </head>
 <body>
-    <h1>Pune AQI Prediction</h1>
+    <h1 class="heading">AQI and Pollutants Prediction</h1>
     <form method="post" action="/predict">
+        <label for="city">City:</label><br>
+        <select type="string" id="city" name="city" required>
+            <option value="select" hidden>Select city</option>
+            <option value="pune">Pune</option>
+            <option value="nagpur">Nagpur</option>
+            <option value="delhi">Delhi</option>
+            <option value="mumbai">Mumbai</option>
+            <option value="chennai">Chennai</option>
+            <option value="bangalore">Bangalore</option>
+        </select><br>
+
         <label for="T">Temperature:</label>
         <input type="number" id="T" name="T" required><br>
 
@@ -92,4 +123,4 @@
 
         <input type="submit" value="Predict">
     </form>
-    <p>Disclaimer: The above prediction is based on the given input data</p>
+    <p class="warning">Disclaimer: The above prediction is based on the given input data</p>

@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <title>Air Quality Index Prediction</title>
   <style>
     body {
@@ -27,62 +26,87 @@
       font-size: 24px;
       margin-bottom: 50px;
     }
+    container{
+      margin-left: 100px;
+      margin-right: 100px;
+    }
+    .card{
+      margin-left: 100px;
+      margin-right: 100px;
+      margin-bottom: 40px;
+      width: 25rem;
+      height: 25rem;
+      background-color: darkgray;
+      color: black;
+    }
+    .flex-row{
+      display: inline-flex;
+    }
+    .card-text{
+      color: black;
+      font-size: xx-large;
+      font-weight: bold;
+    }
+    .card-img-top{
+      width: 25rem;
+      height: 20rem;
+    }
   </style>
 </head>
 <body>
-  <h1>Air Quality Index Prediction</h1>
-  <p>The predicted value is {{ prediction }}.</p>
-
-  <div>
-    <div class="card" style="width: 18rem;">
-      <img src="" class="card-img-top" alt="...">
+  <h1>Air Quality Index and Pollutants Prediction</h1>
+  <div class="col-md-4 ml-auto mr-auto mb-1 mt-auto">
+    <div class="main">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1IYFIPw6LqMWaX7BxccF1-lVQtAEKL9Aipg&usqp=CAU" class="card-img-top">
       <div class="card-body">
-        <h5 class="card-title">O3</h5>
-       
+        <h5 class="card-title"><p>The predicted value is {{ prediction[0]*prediction[1] }}.</p></h5>
       </div>
     </div>
-    <div class="card" style="width: 18rem;">
-      <img src="Templates\so2.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">SO2</h5>
-       
-      </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">PM 25</h5>
-       
-      </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">PM 10</h5>
-       
-      </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-      <img src="Templates/co.png" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">CO</h5>
-       
-      </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">NO2</h5>
-       
-      </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">aqi</h5>
-      </div>
-    </div>
-
   </div>
+
+  <!-- <div class="flex-row"> -->
+    <div class="flex-row">
+      <div class="card">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxATERIQERAQFRUSEhIQEBAXFxAQEBAQFxIXGBUYFRgZHSggGBolGxMTIjEhJikrLi4uFx81ODMsNygtLisBCgoKDQwOGxAQGzUhHyU3Mi4vLTcwNy0vLzUvLTIuLS8tLTA3KzgwLS03OC01LS4yLS0vKy0tNS0tNS0tKzUuK//AABEIAKgBLAMBIgACEQEDEQH/xAAcAAEAAgIDAQAAAAAAAAAAAAAABggDBwIEBQH/xABCEAACAgEBBQUFBAcECwAAAAAAAQIDBBEFBgcSIRMxQVFhInGBkaEjQlJyFDIzYqKxwRckgtEIQ1NUY3OSsrPC4f/EABoBAQACAwEAAAAAAAAAAAAAAAADBAECBQb/xAAjEQEAAgIBBAEFAAAAAAAAAAAAAQIDBBEFEiExQRMyUYGh/9oADAMBAAIRAxEAPwDeIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa63y4q42M5U4qjkXLVSlrpRW/WS/XfovmgNinjbQ3r2fR0uzMaD/C7IOXyT1K7bd3v2hlt9vk2cr/ANVBuqlLy5Y9/wAdTwVWl3ICykuJOx09P06v3pWNfPl0O5hb77LtfLXn4zfk5xg/lLQq84mOcALh12KSUotNPqmmmmvRnIqNsjbmZiNPFybqtHryxk+zfXxg/ZfyNj7I435CgoZGJVOzoo2xk6oS/NHR6P3PT3GJniOW1KTe0Vj3LeQNKW8X877uPjL0faP/ANjLjcZchP7XEpkvHklOt/XUhjYxz8ulbo+5WOZr/YbmBAticV9nXNRtc8eT6faLWvX88ei970J1TbGcVKEoyjJaxkmpRa8013k0Wi3pz8mHJini8cOYAMowAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANb8Zd63jURw6ZaW5MXzyXSVeP3S08nJ+yvRSAjPE7iLK6U8PCsapWsbr4vSV0vGMH4Q8NfH3d+sYxEUc0gPmh8aMnKe7sjcvaOSlKnFscH3WS5aoNeacmtV7tQI40Y5Inl3CnayWqqpl+6rY8310X1IntnYmViyUcnHtqb6JyXsyf7sl7L+DA8qSMM4nYkYZge1iz5oRl5rr710Z9nE7O6OxcrKjKOPRZZyya5ktILoujk9Ip/El39l+02tezqXp2kdf8AI5VsV++YiHv8G/rzr0tkvETMflr+yB6+62+OZs+etM+atvWePLV1TWvXRfdl6r6mTbu7Obi9cjHshHu7TpKv09qOqRHrUb0m1ZV9mmLPTxxMLQ7ob1Y20Ke2oejjoranp2lU/J+a8n3M90qbuvvHds/Khk0t9GlbXrpG6rX2ov8Ao/B6Fptj7TqyaKsmmWtdsFOD8dH4Pyaeqa80X6W7oeR2cH0b8fDuAA3VgAAAAAAAAAAAAAAAAAAAAAAAAAACre+e2Xl5+Tka6xlY4VeSph7MNPRpc3vkyx+9ea6cHLvj31Y11kfzRrk19dCqdS0SXkkgM6OcTEme9uRgRyNoYlElrGVyc15xgnNp+jUGviBtLhtw+rrrhmZdalbNKdVMlrGmL6xck++b7+vd7z097eKGDhWOiKnkXR6Tqq00rflOb6J+nVnc4pbesw9m220vS2xwx6ZfgnY9HJeqjzNeqRXKCUVourfWUn1lKT7234sDblHHGHN9ps26MfONtc5L4NL+ZPNi7f2dtWica3C2Oml2PZHScNfxwl3e/u8mVkkxXbODbrnODcZVuUJOEnCS0lFteD8gPV35xcGrNtqwLXZVH9b70a7OvNCE/vpdOvw1Z73CvcFbQslkZHMsWqXLyrWLyLV15U/CC1WrXnp5kBklGPRdEmy1W6+BDC2dRXpoqcdTsfdzT5eeyXvcnJ/EDq7xb07P2VVCuSUfZ0oxKYrnlFfhitFGPq9EQ3+2pc3TZtvL5u2Cnp7uXT6mo7NsW5eZdl3Nud3NJJ9VXDmXJCPkktEZ5FTNntS3bD0PTek4dnB9W8z+lid198MLaUJQhqp8v2uNakp8vc+nVTj171qav4r7hRxf75irSiUkrav9hOT6OP7jfTTweng+kJ2dtGzHuryKpaTqkpxfn5p+jWqa8mWVyq687BktNYZWNqvRWV6xfvWqfwNqWjNXz7QZ8Num5Ymk81lUy43N/o97ebhkbPnL9n/eKF4qMny2peik4P8Axs0vbr49/c/eS/g3mOvbGMl3Wq2mfrF1Skv4oRM4/DG5EXrMrOgAsOMAAAAAAAAAAAAAAAAAAAAAAAAAACO8RYN7K2gl/ul7+Vbf9Cr8GW7z8WNtVlMv1ba51y/LKLi/oyoU6pVylVPpOuUq5rynCTjL6pgZkyS8OMqNe1MKUnona69fWyuUI/xTRFlI5QsaalFtNNSjJd6aeqa9dQLE8Y9lzv2ZY603KiyvJ5V1bhBtT090ZSfwK8ORY/h5vnVtChRk4rIrilkU92vhzxXjB/TuItvbwdjZOVuBbCrmbbx5p9kn/wAOS1cF+7o15aLoBphHPlJ5j8H9qOWknixWvWfaTl09Eoav6GyN0eG2JiQlK7lyLZRcZznFKuMGtJKEHrpqtdW9X7u4CumVXrFrzTX0LXYNscvBhKL9nJxY6P0sq/8ApWvffHw6cy6rCv7WqL7+rVcvvVqf30vP4ddNSecFt/a60tmZU1FOTeHbJ6R1k9XVJvu6tuPva8tQ1Xi4llOROi2LjOrnqsj5SjJJ/Doeqom9N9+HGPnT/Sa5djk8qi7EtYWxXcrI+LWmikuvv0RA5cKdpqXKnjNfj7SSXy5dSlnxWtfmIem6VvYcWv2WtxPMoDOqUmoRTcpNRjFdXKTeiS9W2Wb2fWsPArjZJaYuLFWS8Ps6vaf8LIzuRw3qw5rIvmrr4/s9FpVS/OKfWUvV/IjHG3fuHZy2XjTUpz0WZOL1Vda69nr+J9NfJdPEmw4+yOZc/qO3G1eKY/MQ0pOxy9p98m5P3t6kq4T1OW2MJLwsnL4Rpm/6EUNp/wCj9shzzLstr2aKuzi9O+21+D9Iwl/1IV8yxmntxy36ACdygAAAAAAAAAAAAAAAAAAAAAAAAAACu3Gzd542e8mK+yzPtNfCORFJWR+Psy9dZeRYk8TfHduraGJZi29Nfaqs8arl+rNf1Xim14gVSUjlzGTbOy78S+eNkw5LK3o192S8JRfjF96Z1FMDuYuXZVONtVk65wesLINxnF+jX8vE2BsjjRtGqKjfVRk6LTnetFr/ADOKcX8ka05z45Abft4726ezs2Ovm7+n0gQ3eriRtPOi652xpplqpU06x515Tm3zNenRehEHIxykBzcklojDN6hyPgE/3R4pbTxYqpzhkVwSUYXcznFeUbE9fnqS3+3W3Trs2PN/z3y/+M01jS0TOUpkNr2i3h08Wthtiibe073l4s7TyouuDhi1yWjVXM7WvFdo+q/wpEBS/wA2/Fv1PupyqrlKShGMpSk1GMUnKUpPuSS72azMz7S0x0x/bD7RTKc41wi5SnJQhFdXKTeiS9W2i1HDzdlbPwa8d6do/tciS6810u9a+KSSivSJE+FHDX9E0zcyKeQ19lV0ksZNdW/B2NP4G0SWleFHYzd88R6AAbqoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiu/u4+NtOrls9i6CfYZCWsoPykvvQfivloVv3q3XzNn2dnlVNJvSu6PtU2/ll5+j0Zbo6+dhVXQlVdXCyElpKE4qcWvVMCmfaHxzLAbxcEMG1yniW2Y0n15P21Gvom+ZfBkC2hwV2tW32f6NcvDlscJP4TS/mBrtyPmpMJcLNtp6foMn6qzH0/7zv4XBzbM37VVFS852xf0gmBADPg4N10nCim22STk41xlZJRXe2orojdmwOBNUWpZuVKzxdVS7OHuc3rJ/DQ2nsTYWLiV9li0V1R8eVaOT85S75P1YFR5bMyI9JUXLw6wsXX4o7WHu7nWvlqw8mb9KrNPi9NEW/0BH2LUbUxHEQrnu/wd2le07+TGg+9zanbp6Qj/AFaNw7m7gYOz1zVQdl2mjyLNJWe6PhBe74tkrBtFYhFfNe/sABsiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//Z" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text">CO : {{prediction[0]*0.02*prediction[1]}}</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkAjlGxXamL796tjM0Bk5bDzghn9JgzQZD8g&usqp=CAU" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text">SO2: {{prediction[0]*0.08*prediction[1]}}</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1N3Zao4zli9HU9MXWTH615-cDXWoWCqjwCg&usqp=CAU" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text">O3: {{prediction[0]*0.0054*prediction[1]}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex-row">
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLxgh861Zrz3THJlCKe3uWme_kyZ63K9ijyrGI1Ibxf90e7x2BNfKlTPvbhCJYvgXtw38&usqp=CAU" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text">NO2: {{prediction[0]*0.07584*prediction[1]}}</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxU5MaEWRLwRXQXYPl8kcLfn9aMpfbEmJ00CYnJLhOTpQbAVgPNf8MGVAxKTfR2nSDi68&usqp=CAU" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text">CS2: {{prediction[0]*0.00154*prediction[1]}}</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://www.shutterstock.com/image-vector/pm-10-text-cloud-smoke-260nw-1334991587.jpg" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text">PM10 : {{prediction[0]*0.54*prediction[1]}}</p>
+        </div>
+      </div>
+    <!-- </div> -->
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
